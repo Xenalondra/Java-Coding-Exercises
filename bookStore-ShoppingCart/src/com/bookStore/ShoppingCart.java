@@ -17,7 +17,8 @@ public class ShoppingCart {
 
     public void startShopping() {
         String[] opt = {"Add Item", "Pay","Quit"};
-        int option = JOptionPane.showOptionDialog(null, "What would you like to do?", "Shopping Cart", 0, JOptionPane.QUESTION_MESSAGE, null, opt, opt[0]);
+        int option = JOptionPane.showOptionDialog(null, 
+                "What would you like to do?", "Shopping Cart", 0, JOptionPane.QUESTION_MESSAGE, null, opt, opt[0]);
         //rule switch - use (->) instead of colon (:), no need to use breaks, One statement per case.
         switch(option){
             case 0 -> addItem();  
