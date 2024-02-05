@@ -14,7 +14,21 @@ public class ThreadsSample {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        printNumbers();
+    }
+    
+    public static void printNumbers() {
+        // Create two threads, each printing numbers from 1 to 5
+        PrintNumbers thread1 = new PrintNumbers(1, 5);
+        PrintNumbers thread2 = new PrintNumbers(1, 5);
+
+        // Set thread names for better identification
+        thread1.setName("Thread A");
+        thread2.setName("Thread B");
+
+        // Start both threads
+        thread1.start();
+        thread2.start();
     }
     
 }
