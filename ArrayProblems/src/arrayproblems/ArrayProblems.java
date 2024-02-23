@@ -5,6 +5,7 @@
 package arrayproblems;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 /**
  *
@@ -16,9 +17,24 @@ public class ArrayProblems {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        int[] arr1 = {1,2,3,4};
-        System.out.println(Arrays.toString(productExceptSelf2(arr1))); //24,12,8,6
+        String[] names1 = new String[] {"Ava", "Emma", "Olivia"};
+        String[] names2 = new String[] {"Olivia", "Sophia", "Emma"};
+        System.out.println(Arrays.toString(uniqueNames(names1, names2))); // should print Ava, Emma, Olivia, Sophia
+    }
+    
+    public static String[] uniqueNames(String[] names1, String[] names2) {
+        LinkedHashSet<String> unique = new LinkedHashSet<>();
+        for (int i = 0; i < names1.length; i++){
+            unique.add(names1[i]);
+            unique.add(names2[i]);
+        }
+        
+        String[] uniqueNames = new String[unique.size()];
+        int index = 0;
+        for (String name : unique) {
+            uniqueNames[index++] = name;
+        }
+        return uniqueNames;
     }
     
     /*
