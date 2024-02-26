@@ -14,7 +14,7 @@ import java.time.Period;
 public class AgeCalculator {
 
     static LocalDate today = LocalDate.now();
-
+    static LocalDate birthday;
     /**
      * @param args the command line arguments
      */
@@ -31,7 +31,7 @@ public class AgeCalculator {
             System.out.print("Enter your birth year (1-" + today.getYear() + "): ");
             int year = reader.nextInt();
 
-            LocalDate birthday = LocalDate.of(year, month, day);
+            birthday = LocalDate.of(year, month, day);
 
             if (valid(month, day, year) && !birthday.isAfter(today)) {
                 String ageResult = computeAge(birthday);
@@ -53,21 +53,19 @@ public class AgeCalculator {
     }
 
     private static boolean valid(int month, int day, int year) {
-        int currentYear = today.getYear();
         return (month >= 1 && month <= 12)
-                && (year > 0 && year <= currentYear) && isValidDay(day, month);
+                && (year > 0 && year <= today.getYear()) && isValidDay(day, month);
     }
 
     private static boolean isValidDay(int day, int month) {
         if (day >= 1 && day <= 31) {
-            return switch (month) {
+            return 
+                switch (month) {
                 case 4, 6, 9, 11 -> day <= 30;
-                case 2 -> day <= (today.isLeapYear() ? 29 : 28); // Check for February and handle leap years
+                case 2 -> day <= (birthday.isLeapYear() ? 29 : 28); // Check for February and handle leap years
                 default -> true;
             };
         }
         return false;
     }
-
-    
 }
