@@ -400,6 +400,32 @@ public class CodingPractice {
     }
     
     /*
+    * Given a positive integer n, the task is to find the maximum sum obtained by 
+    * recursively breaking n into parts (n/2, n/3, and n/4) until no further breaking 
+    * leads to a higher sum.
+     */
+    public static int maxSum(int n) {
+        // Create an array to store computed values to avoid recomputation
+        int[] dp = new int[n + 1];
+
+        // Initialize dp array with values from 1 to n
+        for (int i = 1; i <= n; i++) {
+            dp[i] = i;
+        }
+
+        // Iterate through each value from 2 to n
+        for (int i = 2; i <= n; i++) {
+            // Break the current value into three parts and consider the maximum sum
+            int temp = dp[i / 2] + dp[i / 3] + dp[i / 4];
+            // Update dp[i] with the maximum sum
+            dp[i] = Math.max(dp[i], temp);
+        }
+
+        // The final result is stored in dp[n]
+        return dp[n];
+    }
+    
+    /*
      * Given an integer n, return the number of trailing zeroes in n!.
      */
 }

@@ -50,32 +50,19 @@ public class polymorphismSample1 {
     
     private Animal selectPet() {
         String[] pets = {"Dog","Cat","Bird","None of the above"};
-        String petType = (String)(JOptionPane.showInputDialog(null, "What is your pet?", "PET CLIINIC", JOptionPane.QUESTION_MESSAGE, null, pets, pets[0]));
-        switch(petType){
-            case "Dog": return new Dog(); 
-            case "Cat": return new Cat(); 
-            case "Bird": return new Bird();
-            default: return null;
-        }
-    }
-    
-    private void admitPet(Animal pet){
-        //instanceof - to check whether the object is an instance of a class
-        switch (pet) {
-            case Dog petDog -> {
-                petDog.whimpers();
-                System.out.println("Admitting this Dog in the clinic");
-            }
-            case Cat petCat -> {
-                petCat.scratch();
-                System.out.println("Admitting this Cat in the clinic");
-            }
-            case Bird petBird -> {
-                petBird.flutter();
-                System.out.println("Admitting this Bird in the clinic");
-            }
-            default -> {}
-        }
+        String petType = (String)(JOptionPane.showInputDialog(null, 
+                "What is your pet?", 
+                "PET CLIINIC", 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                pets, 
+                pets[0]));
+        return switch (petType) {
+            case "Dog" -> new Dog();
+            case "Cat" -> new Cat();
+            case "Bird" -> new Bird();
+            default -> null;
+        };
     }
     
     private void admitPetToClinic(Animal pet){
